@@ -12,10 +12,21 @@
 */
 // Route::group('prefix')
 Route::get('/','ProdukCustomerController@index');
+Route::resource('/collection','ProdukCustomerController');
+Auth::routes(['verify' => true]);
 
-Auth::routes();
+Route::post('/addToCart','CartController@addToCart')->name('addToCart');
+Route::get('/viewcart','CartController@index');
+Route::get('/cart/deleteItem/{id}','CartController@deleteItem');
+Route::get('/cart/update-quantity/{id}/{quantity}','CartController@updateQuantity');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/check-out','CheckOutController@index');
+    Route::get('/check-shipping','CheckOutController@checkshipping');
+    Route::post('/submit-checkout','CheckOutController@submitcheckout');
+    Route::resource('/transaction','TransactionController');
+    Route::get('/order-review','OrderController@index');
+    Route::post('/cod','OrderController@cod');
 
 Route::group(['prefix'=>'admin', 'guard'=>'admin'],function(){
     Route::get('/login','AuthAdmin\LoginController@showLoginForm')->name('admin.login');
@@ -24,7 +35,10 @@ Route::group(['prefix'=>'admin', 'guard'=>'admin'],function(){
     Route::resource('/kategori','KategoriController');
 Route::resource('/kurir','KurirController');
 Route::resource('/produk','ProdukController');
+Route::resource('/transactionAdmin','TransactionAdminController');
 });
+
+
 
 
 

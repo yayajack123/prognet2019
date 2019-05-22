@@ -111,7 +111,8 @@ class ProdukController extends Controller
     public function edit(Produk $produk)
     {
         $test = Produk::find($produk)->first();
-        return view("/admin/produk/edit",compact("test"));
+        $img = Product_img::select('image_name')->where('product_id','=',$product->id)->get();
+        return view("/admin/produk/edit",compact("test","img"));
     }
 
     /**
@@ -141,6 +142,7 @@ class ProdukController extends Controller
      */
     public function destroy(Produk $produk)
     {
-        //
+        Produk::where('id','=',$produk->id)->delete();
+        return redirect('/admin/produk/')->with('message','Data Berhasil Dihapus'); 
     }
 }

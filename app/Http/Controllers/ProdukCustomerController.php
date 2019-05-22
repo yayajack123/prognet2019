@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use App\ProdukCustomer;
 use DB;
 use App\GambarProduk;
@@ -9,6 +10,7 @@ use App\Kategori;
 use App\ProdukDetail;
 use App\Quotation;
 use App\Produk;
+use App\Cart;
 use Illuminate\Http\Request;
 
 class ProdukCustomerController extends Controller
@@ -57,9 +59,30 @@ class ProdukCustomerController extends Controller
      * @param  \App\ProdukCustomer  $produkCustomer
      * @return \Illuminate\Http\Response
      */
-    public function show(ProdukCustomer $produkCustomer)
+    public function show($produkCustomer)
     {
-        //
+        // $gas = Produk::select('products.id','products.product_name','products.price','description','product_rate','stock','weight','product_images.image_name','product_categories.category_name')
+        // ->join('product_category_details','products.id','=','product_category_details.product_id')
+        // ->join('product_images','products.id','=','product_images.product_id')
+        // ->join('product_categories','product_category_details.category_id','=','product_categories.id')
+        // ->where('products.id','=',$produkCustomer)
+        // ->findOrFail($id);
+        $detail_product=Produk::findOrFail($produkCustomer);
+        $images=GambarProduk::where('product_id',$produkCustomer)->get();
+        $kat = ProdukDetail::select('product_categories.category_name')
+             ->join('product_categories','product_category_details.category_id','=','product_categories.id')        
+             ->where('product_category_details.product_id',$produkCustomer)
+             ->get();
+        $session_id=Session::get('session_id');
+        $cart_datas=Cart::select('carts.id','user_id','product_id','stock','qty','status','session_id','price')
+                 ->join('products','carts.product_id','=','products.id')
+                 ->where('session_id',$session_id)->get();
+        $total_price=0;
+             foreach ($cart_datas as $cart_data){
+                 $total_price+=$cart_data->price*$cart_data->qty;
+             }
+
+        return view('user.produkdetail',compact('detail_product','images','kat','cart_datas','total_price'));
     }
 
     /**

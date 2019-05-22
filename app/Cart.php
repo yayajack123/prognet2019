@@ -1,0 +1,14 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Cart extends Model
+{
+	use SoftDeletes;
+    protected $table='carts';
+    protected $primaryKey='id';
+    protected $fillable=['user_id','products_id','qty','status'];
+}

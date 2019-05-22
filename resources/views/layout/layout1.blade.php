@@ -25,8 +25,7 @@
 
     <!-- Main style sheet -->
     <link href="{{URL::asset('css/style.css')}}" rel="stylesheet">    
-
-    <!-- Google Font -->
+        <!-- Google Font -->
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     
@@ -78,8 +77,7 @@
                   <li><a href="{{ route('login') }}">Login</a></li>
                   @endauth
                   @endif
-                  <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
-                  <li class="hidden-xs"><a href="cart.html">My Cart</a></li>
+                  <li class="hidden-xs"><a href="/viewcart">My Cart</a></li>
                   <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
                   {{-- <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li> --}}
                 </ul>
@@ -110,7 +108,7 @@
               <!-- / logo  -->
                <!-- cart box -->
               <div class="aa-cartbox">
-                <a class="aa-cart-link" href="#">
+                <a class="aa-cart-link" href="/viewcart">
                   <span class="fa fa-shopping-basket"></span>
                   <span class="aa-cart-title">SHOPPING CART</span>
                   <span class="aa-cart-notify">2</span>
@@ -179,106 +177,11 @@
           <div class="navbar-collapse collapse">
             <!-- Left nav -->
             <ul class="nav navbar-nav">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="#">Men <span class="caret"></span></a>
-                <ul class="dropdown-menu">                
-                  <li><a href="#">Casual</a></li>
-                  <li><a href="#">Sports</a></li>
-                  <li><a href="#">Formal</a></li>
-                  <li><a href="#">Standard</a></li>                                                
-                  <li><a href="#">T-Shirts</a></li>
-                  <li><a href="#">Shirts</a></li>
-                  <li><a href="#">Jeans</a></li>
-                  <li><a href="#">Trousers</a></li>
-                  <li><a href="#">And more.. <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Sleep Wear</a></li>
-                      <li><a href="#">Sandals</a></li>
-                      <li><a href="#">Loafers</a></li>                                      
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li><a href="#">Women <span class="caret"></span></a>
-                <ul class="dropdown-menu">  
-                  <li><a href="#">Kurta & Kurti</a></li>                                                                
-                  <li><a href="#">Trousers</a></li>              
-                  <li><a href="#">Casual</a></li>
-                  <li><a href="#">Sports</a></li>
-                  <li><a href="#">Formal</a></li>                
-                  <li><a href="#">Sarees</a></li>
-                  <li><a href="#">Shoes</a></li>
-                  <li><a href="#">And more.. <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Sleep Wear</a></li>
-                      <li><a href="#">Sandals</a></li>
-                      <li><a href="#">Loafers</a></li>
-                      <li><a href="#">And more.. <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="#">Rings</a></li>
-                          <li><a href="#">Earrings</a></li>
-                          <li><a href="#">Jewellery Sets</a></li>
-                          <li><a href="#">Lockets</a></li>
-                          <li class="disabled"><a class="disabled" href="#">Disabled item</a></li>                       
-                          <li><a href="#">Jeans</a></li>
-                          <li><a href="#">Polo T-Shirts</a></li>
-                          <li><a href="#">SKirts</a></li>
-                          <li><a href="#">Jackets</a></li>
-                          <li><a href="#">Tops</a></li>
-                          <li><a href="#">Make Up</a></li>
-                          <li><a href="#">Hair Care</a></li>
-                          <li><a href="#">Perfumes</a></li>
-                          <li><a href="#">Skin Care</a></li>
-                          <li><a href="#">Hand Bags</a></li>
-                          <li><a href="#">Single Bags</a></li>
-                          <li><a href="#">Travel Bags</a></li>
-                          <li><a href="#">Wallets & Belts</a></li>                        
-                          <li><a href="#">Sunglases</a></li>
-                          <li><a href="#">Nail</a></li>                       
-                        </ul>
-                      </li>                   
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li><a href="#">Kids <span class="caret"></span></a>
-                <ul class="dropdown-menu">                
-                  <li><a href="#">Casual</a></li>
-                  <li><a href="#">Sports</a></li>
-                  <li><a href="#">Formal</a></li>
-                  <li><a href="#">Standard</a></li>                                                
-                  <li><a href="#">T-Shirts</a></li>
-                  <li><a href="#">Shirts</a></li>
-                  <li><a href="#">Jeans</a></li>
-                  <li><a href="#">Trousers</a></li>
-                  <li><a href="#">And more.. <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Sleep Wear</a></li>
-                      <li><a href="#">Sandals</a></li>
-                      <li><a href="#">Loafers</a></li>                                      
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li><a href="#">Sports</a></li>
-             <li><a href="#">Digital <span class="caret"></span></a>
-                <ul class="dropdown-menu">                
-                  <li><a href="#">Camera</a></li>
-                  <li><a href="#">Mobile</a></li>
-                  <li><a href="#">Tablet</a></li>
-                  <li><a href="#">Laptop</a></li>                                                
-                  <li><a href="#">Accesories</a></li>                
-                </ul>
-              </li>
-              <li><a href="#">Furniture</a></li>            
-              <li><a href="blog-archive.html">Blog <span class="caret"></span></a>
-                <ul class="dropdown-menu">                
-                  <li><a href="blog-archive.html">Blog Style 1</a></li>
-                  <li><a href="blog-archive-2.html">Blog Style 2</a></li>
-                  <li><a href="blog-single.html">Blog Single</a></li>                
-                </ul>
-              </li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="/">Home</a></li>
+              <li><a href="#">Men</a></li>
+              <li><a href="#">Women</a></li>
+              <li><a href="#">Accessoris</a></li>
+              <li><a href="#">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -294,6 +197,7 @@
         @yield('content')
        
  <!-- / Cart view section -->
+        @yield('jsblock')
 
   
   <!-- / footer -->
@@ -326,6 +230,7 @@
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
+  {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> --}}
   <script src="{{URL::asset('js/bootstrap.js')}}"></script>  
   <!-- SmartMenus jQuery plugin -->
   <script type="text/javascript" src="{{URL::asset('js/jquery.smartmenus.js')}}"></script>
