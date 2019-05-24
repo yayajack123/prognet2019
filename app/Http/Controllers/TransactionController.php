@@ -112,14 +112,14 @@ class TransactionController extends Controller
         if ($status == 'delivered') {
             $transaction->status='success';
             $transaction->save();
-            $admin = Admin::find(2);
+            $admin = Auth::user('guard:admin');
             $admin->notify(new AdminNotif("ada transaksi yang berubah status menjadi Success"));
             return redirect()->back();
         }
         else{
             $transaction->status='unverified';   
             $transaction->save();
-            $admin = Admin::find(2);
+            $admin = Auth::user('guard:admin');
             $admin->notify(new AdminNotif("ada transaksi yang berubah status menjadi Unverified"));
         }
 

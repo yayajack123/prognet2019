@@ -46,7 +46,7 @@
                     <ul class="dropdown-menu">
                         <center><button id="readnotif"><a  style="color: green;">----Mark All As Read---</a></button></center>
                         @foreach($notif as $notif)
-                           <li><a href="#"> {!!$notif->data!!}</a></li>
+                            <li><a href="/transaction/{{$notif->id}}"> {!!$notif->data!!}</a></li>
                         @endforeach
                     </ul>
                 </li>
@@ -112,6 +112,8 @@
         </main>
     </div>
 </body>
+
+@yield('jsblock')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){

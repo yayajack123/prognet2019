@@ -218,7 +218,7 @@
         @yield('content')
        
  <!-- / Cart view section -->
-        @yield('jsblock')
+        
 
   
   <!-- / footer -->
@@ -270,6 +270,6 @@
   <!-- Custom js -->
   <script src="{{URL::asset('js/custom.js')}}"></script> 
   
-
+  @yield('jsblock')
   </body>
 </html>

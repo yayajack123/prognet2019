@@ -109,6 +109,7 @@ class OrderController extends Controller
             $transaction_det->save();
 
         }
+        $admin = Auth::user('guard:admin');
         $admin->notify(new AdminNotif("ada transaksi baru"));
         foreach ($cart_datas as $cart_data){
             $cart_data->status = "checkedout";

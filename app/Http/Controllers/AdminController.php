@@ -32,8 +32,8 @@ class AdminController extends Controller
 
         $tahun = CARBON::NOW()->format('Y');
         $reportBulanan = Transaction::
-        select(DB::raw('MONTH(created_at) as bulan'), DB::raw('COALESCE(SUM(total),0) as pendapatan'))
-            ->groupBy(DB::raw('MONTH(created_at)'))
+        select(DB::raw('MONTHNAME(created_at) as bulan'), DB::raw('COALESCE(SUM(total),0) as pendapatan'))
+            ->groupBy(DB::raw('MONTHNAME(created_at)'))
             ->where(DB::raw('YEAR(created_at)'),'=', $tahun)
             ->where('status','success')
             ->get();
@@ -50,8 +50,8 @@ class AdminController extends Controller
       {
         $tahun = CARBON::NOW()->format('Y');
         $result = \DB::table('transactions')
-                    ->select(DB::raw('MONTH(created_at) as bulan'), DB::raw('COALESCE(SUM(total),0) as pendapatan'))
-                    ->groupBy(DB::raw('MONTH(created_at)'))
+                    ->select(DB::raw('MONTHNAME(created_at) as bulan'), DB::raw('COALESCE(SUM(total),0) as pendapatan'))
+                    ->groupBy(DB::raw('MONTHNAME(created_at)'))
                     ->where(DB::raw('YEAR(created_at)'),'=', $tahun)
                     ->where('status','success')
                     ->get();
