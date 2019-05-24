@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\UserNotif;
+use App\Notifications\AdminNotif;
+use App\User;
 use Illuminate\Http\Request;
 use App\Transaction;
 use App\Transaction_det;
+use App\Admin;
+use Illuminate\Notifications\Notification;
+
 class TransactionAdminController extends Controller
 {
     /**
@@ -30,6 +36,13 @@ class TransactionAdminController extends Controller
     public function create()
     {
         //
+    }
+
+    public function markReadAdmin(){
+        $admin = Admin::find(2);
+        
+        $admin->unreadNotifications()->update(['read_at' => now()]);
+        return response()->json($admin);
     }
 
     /**
@@ -86,11 +99,29 @@ class TransactionAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $transaction = Transaction::where('id',$id)->get()->first();
-        $transaction->status = 'verified';
-        $transaction->save();
-        return redirect('/admin/transactionAdmin');
-    }
+        if ($transaction->status == 'unverified') {
+            
+            $transaction->status = 'verified';
+            $transaction->save();
+            $tuser= Transaction::where('id',$id)->first();
+            $user = User::find($tuser->user_id);
+            $user->notify(new UserNotif("Transaksi anda sudah Verified"));
+        }
+        else{
+
+            $transaction->status = 'delivered';
+            $transaction->save();
+
+            $tuser= Transaction::where('id',$id)->first();
+            $user = User::find($tuser->user_id);
+            $user->notify(new UserNotif("Transaksi anda sudah Delivered"));
+
+         }
+         return redirect('/admin/transactionAdmin');
+}
+
 
     /**
      * Remove the specified resource from storage.
@@ -98,9 +129,10 @@ class TransactionAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         //
     }
+
+  
 }
 

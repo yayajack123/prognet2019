@@ -29,7 +29,7 @@
 
                     <div class="form-group">
                         <label for="name">City</label>
-                        <select name="kota" id="billing_city" class="select2-container">
+                        <select name="kota" id="billing_city" >
                             <option>Pilih Kota Tujuan</option>
                             @for($i = 0; $i < count($countries); $i++ )
                                 <option value="{{$countries[$i]["postal_code"]}}">{{$countries[$i]["city_name"].', '.$countries[$i]["province"]}}</option>

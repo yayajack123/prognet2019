@@ -10,6 +10,9 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Mail\OrderNotif;
+use Illuminate\Support\Facades\Mail;
+use App\User;
 
 class CartController extends Controller
 {
@@ -113,5 +116,13 @@ class CartController extends Controller
     //     }
     }
 
+    public function sendemail(){
+        $user = User::find(6);
+        // return $user;
 
+        $mail = Mail::to($user->email)->send(new OrderNotif($user));
+        return $mail;
+        // return 'berhasil';
+        // Mail::to("receiver@example.com")->send(new DemoEmail($objDemo));
+    }
 }

@@ -2,20 +2,22 @@
 @section('title','Your Cart')
 @section('page',' Cart')
 @section('content')
-  <legend>Transaction</legend>
-        <div class="container">
-            <div class="table-responsive cart_info">
-                <table class="table table-condensed">
+<div class="container"><legend>Transaction</legend></div>
+<section id="cart-view">
+  <div class="container">
+        <div class="cart-view-area">
+        <div class="cart-view-table">
+            <div class="table-responsive">
+                <table class="table table-striped">
                     <thead>
-                    <tr class="cart_menu">
+                    <tr>
                         <td>No</td>
-                        <td class="image">Address</td>
-                        <td class="description">Total</td>
-                        <td class="price">Courier</td>
-                        <td class="quantity">Timeout</td>
-                        <td class="discount">Payment & Detail</td>
-                        
-                        <td class="total">Status</td>
+                        <td >Address</td>
+                        <td >Total</td>
+                        <td >Courier</td>
+                        <td >Timeout</td>
+                        <td >Payment & Detail</td>
+                        <td >Status</td>
                         
                     </tr>
                     </thead>
@@ -27,18 +29,18 @@
                                 <td>
                                     {{$loop->iteration}}
                                 </td>
-                                <td class="cart_product">
+                                <td >
                                     {{-- @foreach($image_products as $image_product) --}}
                                     <p>{{$transaction->address}}</p>
                                     {{-- @endforeach --}}
                                 </td>
-                                <td class="cart_description">
+                                <td>
                                     <p style="font-size: 15px">Rp {{number_format($transaction->total)}}</p>
                                 </td>
-                                <td class="cart_price">
+                                <td>
                                     <p style="font-size: 15px">{{$transaction->courier}}</p>
                                 </td>
-                                <td class="cart_quantity">
+                                <td>
                                     <p>{{$transaction->timeout}}</p>
                                 </td>
 
@@ -47,7 +49,7 @@
                                     <a href="/transaction/{{$transaction->id}}"><button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Payment & Detail</button></a>
                                 </td>
 
-                                <td class="cart_total">
+                                <td >
                                     @if(!empty($transaction->status))
                                         <p>{{$transaction->status}}</p>
                                     @else
@@ -60,5 +62,7 @@
                 </table>
             </div>
         </div>
-    
+    </div>
+  </div>
+</section>
 @endsection

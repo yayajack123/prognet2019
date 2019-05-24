@@ -48,8 +48,8 @@
                         <div class="review-payment">
                             <h2>Review & Payment</h2>
                         </div>
-                        <div class="table-responsive cart_info">
-                            <table class="table table-condensed">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
                                 <thead>
                                 <tr class="cart_menu">
                                     <td class="image">Item</td>

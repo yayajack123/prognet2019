@@ -78,7 +78,28 @@
                   @endauth
                   @endif
                   <li class="hidden-xs"><a href="/viewcart">My Cart</a></li>
-                  <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
+                  <li class="hidden-xs"><a href="/transaction">Checkout</a></li>
+                  @if(Auth::check())
+                            @php
+                                $id = Auth::id();
+                                $jum = auth()->user()->unreadNotifications->count();
+                                $notif = DB::table('admin_notifications')->where('notifiable_id',$id)->get();
+
+                            @endphp
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-bell"></i> Notification
+                                @if($jum != 0)<span class="badge" style="background-color: red;">1</span>@endif <span class="caret"></span></a>
+
+                                <ul class="dropdown-menu">
+                                    <li ><a style="color: green;" href="/markRead">Mark All As Read</a></li><br>
+                                    @foreach(auth()->user()->unreadNotifications as $notif)
+                                        <li><a href="#">{{$notif->data}}</a></li><br>
+                                    @endforeach
+
+                                  
+                                </ul>
+                                @endif
+                            </li>
                   {{-- <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li> --}}
                 </ul>
               </div>

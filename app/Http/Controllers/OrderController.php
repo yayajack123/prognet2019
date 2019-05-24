@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use App\Notifications\AdminNotif;
+use App\Admin;
 
 class OrderController extends Controller
 {
@@ -105,8 +107,9 @@ class OrderController extends Controller
             $transaction_det->discount = $cart_data->percentage;
             $transaction_det->selling_price = $harga;
             $transaction_det->save();
-        }
 
+        }
+        $admin->notify(new AdminNotif("ada transaksi baru"));
         foreach ($cart_datas as $cart_data){
             $cart_data->status = "checkedout";
             $cart_data->save();

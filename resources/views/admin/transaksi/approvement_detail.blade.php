@@ -17,12 +17,14 @@
                         <div class="control-group{{$errors->has('courier')?' has-error':''}}">
                             
                             
-                              <center><a href="#"><img src="{{url('images',$data[0]->proof_of_payment)}}" alt="" onclick="window.open(this.src)" border="3"></a></center>
+                              <center><a href="#"><img src="{{url('images/small',$data[0]["proof_of_payment"])}}" alt="" onclick="window.open(this.src)" border="3"></a></center>
                             
                         </div>
                          <div class="control-group">
-                            @if($data[0]->status == 'verified')
+                            @if($data[0]->status == 'unverified')
                                 <center><input type="submit" name="submit" value="Verify Payment" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"></center>
+                            @elseif($data[0]->status == 'verified')
+                                <center><input type="submit" name="submit" value="Deliver" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"></center>
                             @else
                                 <center><b>Verified</b></center>
                             @endif
@@ -61,7 +63,7 @@
                         
                     </tr>
                     </thead>
-                    <tbody">
+                    <tbody>
                    @foreach($data as $data)
                         <?php
                                 $image_products=DB::table('products')->select('image_name')->join('product_images','product_images.product_id','=','products.id')->where('products.id',$data->product_id)->get()->first();
@@ -72,7 +74,7 @@
                                 <td>{{$loop->iteration}}</td>
                                 <td class="cart_product">
                                     {{-- @foreach($image_products as $image_product) --}}
-                                        <a href=""><img src="{{url('images/small',$image_products->image_name)}}" alt="" style="width: 100px;"></a>
+                                        <a href=""><img src="{{url('images',$image_products->image_name)}}" alt="" style="width: 100px;"></a>
                                     {{-- @endforeach --}}
                                 </td>
                                 <td class="cart_description">

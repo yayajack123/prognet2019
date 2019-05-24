@@ -11,6 +11,7 @@ use App\ProdukDetail;
 use App\Quotation;
 use App\Produk;
 use App\Cart;
+use App\Review;
 use Illuminate\Http\Request;
 
 class ProdukCustomerController extends Controller
@@ -81,8 +82,9 @@ class ProdukCustomerController extends Controller
              foreach ($cart_datas as $cart_data){
                  $total_price+=$cart_data->price*$cart_data->qty;
              }
+        $review = Review::join('users','product_reviews.user_id','=','users.id')->where('product_id',$produkCustomer)->orderBy('product_reviews.created_at','desc')->get();
 
-        return view('user.produkdetail',compact('detail_product','images','kat','cart_datas','total_price'));
+        return view('user.produkdetail',compact('detail_product','images','kat','cart_datas','total_price','review'));
     }
 
     /**

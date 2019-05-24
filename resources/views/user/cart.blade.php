@@ -79,13 +79,14 @@
 
                             });
                         </script>
-                         <td><a class="remove" id="hapus-{{$cart_data->product_id}}"><fa class="fa fa-close"></fa></a></td>
+                         <td><a class="cart_quantity_delete" href="javascript:" rel="{{$cart_data->id}}"  id="hapus-{{$cart_data->id}}"><fa class="fa fa-close"></fa></a></td>
                          @foreach ($image_products as $images_product)
                          <td><a href="#"><img src="{{url('images/',$images_product->image_name)}}" alt="img"></a></td>
                          @endforeach
                        <td><a class="aa-cart-title" href="#">{{$image_data->product_name}}</a></td>
                        <td>${{$image_data->price}}</td>
-                         <td><input class="aa-cart-quantity" type="number" value="1"></td>
+                         <td>
+                           <input class="form-control" style="width:20%;" type="number" value="{{$cart_data->qty}}"></td>
                          <td>{{$image_data->price*$cart_data->qty}}</td>
                        </tr>
                        @endforeach
@@ -114,5 +115,28 @@
       </div>
     </div>
   </section>
- 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+  <script>
+      $(".cart_quantity_delete").click(function () {
+          var id=$(this).attr('rel');
+          var deleteFunction=$(this).attr('rel1');
+          swal({
+              title:'Are you sure?',
+              text:"You won't be able to revert this!",
+              type:'warning',
+              showCancelButton:true,
+              confirmButtonColor:'#3085d6',
+              cancelButtonColor:'#d33',
+              confirmButtonText:'Yes, delete it!',
+              cancelButtonText:'No, cancel!',
+              confirmButtonClass:'btn btn-success',
+              cancelButtonClass:'btn btn-danger',
+              buttonsStyling:false,
+              reverseButtons:true
+          },function () {
+              window.location.href="/cart/deleteItem/"+id;
+          });
+      });
+  
+  </script> 
 @endsection

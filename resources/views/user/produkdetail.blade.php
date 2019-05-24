@@ -59,7 +59,7 @@
                           <input type="hidden" name="price" value="{{$detail_product->price}}" id="dynamicPriceInput">
                           <input type="hidden" name="stock" value="{{$detail_product->stock}}">
                   
-                        <input class="aa-cart-quantity" type="number" name="quantity" >
+                        <input class="form-control" type="number" name="quantity" >
                       <p class="aa-prod-category">
                           @foreach($kat as $kat)
                       Category: <a href="#">{{$kat->category_name}}</a>
@@ -83,6 +83,65 @@
           </div>
         </div>
       </div>
-    </div>  
-    </section>
+    </div>
+  </section>
+    <div class="category-tab shop-details-tab"><!--category-tab-->
+      <div class="col-sm-12">
+          <ul class="nav nav-tabs">
+              <li class="active"><a href="#reviews" data-toggle="tab">Reviews</a></li>
+              {{-- <li><a href="#companyprofile" data-toggle="tab">Company Profile</a></li>
+              <li><a href="#reviews" data-toggle="tab">Reviews (5)</a></li> --}}
+          </ul>
+      </div>
+      <div class="tab-content" id="reviews">
+          <div class="tab-pane fade active in"  >
+              <div class="container">
+                  <div class="row">
+                      <div class="col-sm-9">
+                  @foreach($review as $review)
+                      <p><b>{{$review->name}}</b></p>
+                      @php
+                          $a = 5;
+                      @endphp
+                      @for($i=0 ; $i< $review->rate; $i++)
+                          @php
+                              $a = $a-1;
+                          @endphp
+                          <span style="color: gold;" class="fa fa-star checked"></span>
+                      @endfor
+                      @for($i=0 ; $i< $a; $i++)
+                          <span style="color: grey;" class="fa fa-star"></span>
+                      @endfor
+                      <input style="background-color: white;" type="text" readonly="" class="form-control" value="{{$review->content}}">
+                      <hr>
+
+                  @endforeach
+                  </div>
+                  </div>
+              </div>
+          </div> 
+          <div class="tab-pane fade" id="reviews" >
+            <div class="col-sm-12">
+                <ul>
+                    <li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
+                    <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
+                    <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
+                </ul>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <p><b>Write Your Review</b></p>
+
+                <form action="#">
+                                <span>
+                                    <input type="text" placeholder="Your Name"/>
+                                    <input type="email" placeholder="Email Address"/>
+                                </span>
+                    <textarea name="" ></textarea>
+                    <b>Rating: </b> <img src="{{asset('frontEnd/images/product-details/rating.png')}}" alt="" />
+                    <button type="button" class="btn btn-default pull-right">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div> 
+    
 @endsection
